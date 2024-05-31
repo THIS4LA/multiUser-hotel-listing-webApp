@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        <p className='text-blueColor text-[50px] font-mono'>Hello there</p>
+        <p className='text-blueColor fontDesc text-[50px]'>Hello there</p>
         </div>
     </>
   )
