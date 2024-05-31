@@ -8,8 +8,12 @@ export default {
         pinkColor: "#FF6969",
         redColor: "#C70039",
         blueColor: "#141E46",
-      }
+      },
+
+      boxShadow: {
+        panelShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;",
+      },
     },
   },
   plugins: [],
-};
+}
