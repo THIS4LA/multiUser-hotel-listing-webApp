@@ -1,15 +1,14 @@
-import React from 'react'
 import './App.css'
-
+import Layout from './layout/Layout'
 function App() {
 
   return (
     <>
       <div>
-        <p className='text-blueColor fontDesc text-[50px]'>Hello there</p>
+        <Layout />
         </div>
+
     </>
   )
 }
-
 export default App

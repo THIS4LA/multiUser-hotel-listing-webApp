@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     enum: ["user", "owner"],
     default: "user",
   },
-  gender: { type: String, enum: ["male", "female", "other"] },
+  gender: { type: String, enum: ["male", "female"] },
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
 });
 
