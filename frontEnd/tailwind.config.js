@@ -8,6 +8,8 @@ export default {
         pinkColor: "#FF6969",
         redColor: "#C70039",
         blueColor: "#141E46",
+        headingColor: "#181A1E",
+        textColor: "#4E545F",
       },
 
       boxShadow: {
