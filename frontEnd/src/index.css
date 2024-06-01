@@ -21,7 +21,7 @@
         @apply text-[44px] leading-[54px] font-[700] text-headingColor;
     }
 
-    .text_para{
+    .text__para{
         @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px];
     }
 }
@@ -45,7 +45,7 @@
         @apply text-[26px] leading-[36px];
     }
 
-    .text_para{
+    .text__para{
         @apply text-[16px] leading-7 mt-3;
     }
 }

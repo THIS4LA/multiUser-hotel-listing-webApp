@@ -1,8 +1,8 @@
 // Importing necessary modules from React and other libraries
-import React, { useEffect, useRef } from "react";
-import logo from "../../assets/images/logo-asgard.png"; // Importing the logo image
+import { useEffect,useRef } from "react";
+import logo from "../../assets/images/logo-asgard.png";
 import { NavLink, Link } from "react-router-dom"; // Importing NavLink and Link components from react-router-dom for navigation
-import userImg from "../../assets/images/avatar-icon.png"
+import userImg from "../../assets/images/avatar-icon.png";
 import { BiMenu } from "react-icons/bi"; // Importing menu icon from react-icons
 
 // Defining navigation links for the menu
@@ -64,11 +64,9 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo section */}
           <div>
-<<<<<<< HEAD
-           <Link to="/home"><img src={logo} alt="logo" /></Link>
-=======
-            <img src={logo} alt="logo" />
->>>>>>> b2cdb2dba2114758798ff4a5a19f083d713152f3
+            <Link to="/home">
+              <img src={logo} alt="logo" />
+            </Link>
           </div>
 
           {/* Navigation menu section */}
