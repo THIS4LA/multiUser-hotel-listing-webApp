@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
 
 * {
   margin: 0;
@@ -14,6 +15,12 @@ body {
 .styledFont{
   font-family: "Lobster", sans-serif;
   font-weight: 400;
+  font-style: normal;
+}
+
+.styledFont2{
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 700;
   font-style: normal;
 }
 

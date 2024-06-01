@@ -18,7 +18,7 @@ const Home = () => {
               <h1 className='styledFont letterSpace text-[46px] pt-[150px] leading-[46px] text-redColor font-[800] md:text-[60px] md:leading-[70px] center'>
               Discover a World <br></br> of
               <ReactTyped
-                className="pl-4 letterSpace md:text-[60px] sm:text-6xl text-[36px] font-bold md:py-6 text-blueColor"
+                className="pl-6 letterSpace md:text-[60px] sm:text-6xl text-[36px] font-bold md:py-6 text-blueColor"
                 strings={["Comfort.", "Safety.", "Luxury."]}
                 typeSpeed={160}
                 backSpeed={180}
