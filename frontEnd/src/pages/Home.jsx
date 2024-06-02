@@ -12,6 +12,7 @@ import { NavLink, Link } from "react-router-dom";
 import ScrollDownArrow from "../components/ScrollDownArrow/ScrollDownArrow"
 
 import About from "../components/About/About.jsx";
+import ServiceList from '../components/Services/ServiceList.jsx';
 
 const Home = () => {
   return (
@@ -143,6 +144,34 @@ const Home = () => {
           </div>
         </section>
         <About />
+        {/* services */}
+        <section>
+          <div className='container'>
+            <div className='xl:w-[400px] mx-auto'>
+              <h2 className='heading text-center'>
+                <span className='text-redColor' id='services'>Services</span><br></br> We Offer
+              </h2>
+              <p className='text__para text-center'>
+              Discover our comprehensive suite of services tailored for both hospitality providers and guests. From detailed profile creation and user reviews, we strive to enhance your travel and dining experiences.
+              </p>
+            </div>
+            <ServiceList/>
+          </div>
+        </section>
+        {/* services end */}
+        {/* top rated hotels */}
+        <section>
+          <div className='container'>
+            <div className='xl:w-[470px] mx-auto'>
+              <h2 className='heading text-center'><span className='text-redColor'>Top-Rated</span> Hotels for Unforgettable Stays</h2>
+              <p className='text__para text-center'>
+              Discover our top three highest-rated hotels, chosen by our community for exceptional accommodations and outstanding service.
+              Start your journey with confidence, knowing you&apos;re choosing from the best.
+              </p>
+            </div>
+          </div>
+        </section>
+        {/* top rated hotels end */}
     </>
     </>
   )

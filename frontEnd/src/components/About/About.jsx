@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 import aboutImg from '../../assets/images/about-us.png'
 const About = () => {
@@ -22,10 +23,7 @@ const About = () => {
           <p className='text__para mt-[30px]'>
           our mission is to bridge the gap between service providers and customers, offering a seamless, user-friendly interface where hotels and restaurants can showcase their offerings. We aim to provide comprehensive and reliable information, helping users make informed decisions that enhance their travel and dining experiences.
           </p>
-
-          <Link to="/">
-            <button className='btn'>Learn More</button>
-          </Link>
+          <AnchorLink offset='100' href="#services"><button className='btn'>Learn More</button></AnchorLink>
         </div>
         </div>
       </div>
