@@ -13,6 +13,7 @@ import ScrollDownArrow from "../components/ScrollDownArrow/ScrollDownArrow"
 
 import About from "../components/About/About.jsx";
 import ServiceList from '../components/Services/ServiceList.jsx';
+import OwnerList from '../components/Owners/OwnerList.jsx';
 
 const Home = () => {
   return (
@@ -105,7 +106,7 @@ const Home = () => {
                 </div>
                 <div className="mt-[30px]">
                   <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                    Resturants
+                    Restaurants
                   </h2>
                   <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
                   Known for their exceptional dining experiences, often featuring award-winning or Michelin-starred restaurants.
@@ -170,6 +171,7 @@ const Home = () => {
               </p>
             </div>
           </div>
+          <OwnerList />
         </section>
         {/* top rated hotels end */}
     </>
