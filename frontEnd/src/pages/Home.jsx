@@ -4,6 +4,7 @@ import icon01 from "../assets/images/urban-hotel-primary.png";
 import icon02 from "../assets/images/beach-blue.png";
 import icon03 from "../assets/images/returant-red.png";
 import icon04 from "../assets/images/resort-green.png";
+import faqImg from "../assets/images/faq.png"
 
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { FaAngleRight } from 'react-icons/fa';
@@ -14,6 +15,8 @@ import ScrollDownArrow from "../components/ScrollDownArrow/ScrollDownArrow"
 import About from "../components/About/About.jsx";
 import ServiceList from '../components/Services/ServiceList.jsx';
 import OwnerList from '../components/Owners/OwnerList.jsx';
+import FaqList from '../components/Faq/FaqList.jsx';
+import Testimonial from '../components/Testimonial/Testimonial.jsx';
 
 const Home = () => {
   return (
@@ -174,6 +177,37 @@ const Home = () => {
           <OwnerList />
         </section>
         {/* top rated hotels end */}
+        {/* faq section */}
+        <section>
+        <div className="container">
+          <div className="flex justify-between gap-[50px] lg:gap-0">
+            <div className="mt-12 w-1/2 hidden md:block">
+              <img src={faqImg} alt="faqImg" />
+            </div>
+
+            <div className="w-full md:w-1/2">
+              <h2 className="heading"><span className='text-pinkColor'>Frequently Asked Questions</span> by Our Valued Guests</h2>
+              <FaqList />
+            </div>
+          </div>
+        </div>
+      </section>
+        {/* end faq section */}
+        {/* testimonial */}
+        {/* =======testimonial======= */}
+      <section>
+        <div className="container">
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="heading text-center">Hear What our <span className='text-pinkColor'>Visitors Have to Say</span></h2>
+            <p className="text__para text-center">
+            Explore testimonials from our valued guests. From memorable stays to delightful dining experiences, discover why our community keeps coming back
+            </p>
+          </div>
+          <Testimonial />
+        </div>
+      </section>
+      {/* =======testimonial end======= */}
+        {/* testimonial end */}
     </>
     </>
   )
