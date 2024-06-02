@@ -11,6 +11,8 @@ import { ReactTyped } from "react-typed";
 import { NavLink, Link } from "react-router-dom";
 import ScrollDownArrow from "../components/ScrollDownArrow/ScrollDownArrow"
 
+import About from "../components/About/About.jsx";
+
 const Home = () => {
   return (
     <>
@@ -138,9 +140,9 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
           </div>
         </section>
+        <About />
     </>
     </>
   )
