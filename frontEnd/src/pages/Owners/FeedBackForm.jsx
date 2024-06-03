@@ -9,6 +9,8 @@ const FeedBackForm = () => {
   const handleSubmitReview = async (e) => {
     e.preventDefault();
 
+    console.log("Review Text:", reviewText);
+
     //use our api
   };
 
@@ -28,7 +30,7 @@ const FeedBackForm = () => {
                 type="button"
                 className={`${
                   index <= ((rating && hover) || hover)
-                    ? "text-yellow-300"
+                    ? "text-yellow-400"
                     : "text-gray-400"
                 } bg-transparent border-none outline-none text-[22px] cursor-pointer`}
                 onClick={() => setRating(index)}

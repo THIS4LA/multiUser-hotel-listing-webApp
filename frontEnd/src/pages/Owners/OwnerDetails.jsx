@@ -3,6 +3,7 @@ import ownerImg from "../../assets/images/courtyard-logo.jpg";
 import starIcon from "../../assets/images/Star.png";
 import OwnerAbout from "./OwnerAbout";
 import OwnerFeedBack from "./OwnerFeedBack";
+import SidePanel from "./SidePanel";
 
 const OwnerDetails = () => {
   const [tab, setTab] = useState("about");
@@ -76,6 +77,7 @@ const OwnerDetails = () => {
                     tab === 'feedback' && <OwnerFeedBack />
                   }
                 </div>
+                <SidePanel />
           </div>
         </div>
       </div>
