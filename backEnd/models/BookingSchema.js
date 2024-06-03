@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema(
   {
-    doctor: {
+    owner: {
       type: mongoose.Types.ObjectId,
       ref: "Owner",
       required: true,
@@ -17,14 +17,52 @@ const bookingSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    checkingDate: {
+      type: Date,
+      required: true,
+    },
+    checkOutDate: {
+      type: Date,
+      required: true,
+    },
+    checkingTime: {
+      type: TimeRanges,
+      required: true,
+    },
+    checkOutTime: {
+      type: TimeRanges,
+      required: true,
+    },
+
+    phone: {
+      type: Number,
+      required: true,
+    },
+
+    requirement: {
+      type: String,
+      required: true,
+    },
+
+    nog: {
+      type: Number,
+      required: true,
+    },
+
+    minBudget: {
+      type: Number,
+      required: true,
+    },
+
+    maxBudget: {
+      type: Number,
+      required: true,
+    },
+
     status: {
       type: String,
-      enum: ["pending", "approved", "cancelled"],
+      enum: ["pending", "available", "n/a"],
       default: "pending",
-    },
-    isPaid: {
-      type: Boolean,
-      default: true,
     },
   },
   { timestamps: true }

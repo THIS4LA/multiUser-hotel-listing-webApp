@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const DoctorSchema = new mongoose.Schema({
+const OwnerSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
@@ -12,7 +12,7 @@ const DoctorSchema = new mongoose.Schema({
 
   // Fields for owner only
   category : { type: String },
-  awardsRecognition : {
+  rankings : {
     type: Array,
   },
   about: { type: String },
