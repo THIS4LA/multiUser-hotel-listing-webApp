@@ -61,6 +61,7 @@ const AppointmentForm = () => {
               className="form__input"
               value={formData.checkingDate}
               onChange={handleInputChange}
+              required
             />
             <p className="form__label">Check-in Time*</p>
             <input
@@ -69,6 +70,7 @@ const AppointmentForm = () => {
               value={formData.checkingTime}
               className="form__input"
               onChange={handleInputChange}
+              required
             />
           </div>
           <div>
@@ -79,6 +81,7 @@ const AppointmentForm = () => {
               className="form__input"
               value={formData.checkOutDate}
               onChange={handleInputChange}
+              required
             />
             <p className="form__label">Check-out Time</p>
             <input
@@ -87,6 +90,7 @@ const AppointmentForm = () => {
               value={formData.checkOutTime}
               className="form__input"
               onChange={handleInputChange}
+              required
             />
           </div>
         </div>
@@ -99,6 +103,7 @@ const AppointmentForm = () => {
             onChange={handleInputChange}
             placeholder="Phone number"
             className="form__input"
+            required
           />
         </div>
         <div className="mb-5">
@@ -111,6 +116,7 @@ const AppointmentForm = () => {
             placeholder="Be More Specific About Your Requirement"
             className="form__input"
             maxLength={100}
+            required
           />
         </div>
         <div className="mb-5">
@@ -124,6 +130,7 @@ const AppointmentForm = () => {
                 onChange={handleInputChange}
                 placeholder="Guests"
                 className="form__input"
+                required
               />
             </div>
             <div>
@@ -138,6 +145,7 @@ const AppointmentForm = () => {
                     value={formData.minBudget}
                     onChange={handleInputChange}
                     className="form__input"
+                    required
                   />
                 </div>
                 <div>
@@ -149,6 +157,7 @@ const AppointmentForm = () => {
                     value={formData.maxBudget}
                     onChange={handleInputChange}
                     className="form__input"
+                    required
                   />
                 </div>
               </div>

@@ -20,7 +20,7 @@ There&apos;s a cafe and a lounge, plus a casual restaurant with an international
       </div>
       <div className="mt-12">
         <h3 className="text-[20px] leading-[30px] text-headingColor font-semibold ">
-          Ranking
+          Rankings
         </h3>
         <ul className="pt-4 md:pt-5">
           {/* rank 1st */}

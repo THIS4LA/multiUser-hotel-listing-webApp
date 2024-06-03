@@ -12,7 +12,7 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
     photo: selectedFile,
-    role: "guest",
+    role: "user",
   });
   const [error, setError] = useState("");
 
@@ -143,8 +143,8 @@ const Signup = () => {
                     className="text-textColor font-semibold text-[17px] leading-7 px-4 
               py-3 focus:outline-none"
                   >
-                    <option value="guest">Guest</option>
-                    <option value="partner">Partner</option>
+                    <option value="user">Guest</option>
+                    <option value="owner">Partner</option>
                   </select>
                 </label>
               </div>
