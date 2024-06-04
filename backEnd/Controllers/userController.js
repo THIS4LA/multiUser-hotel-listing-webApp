@@ -1,4 +1,6 @@
 import User from "../models/UserSchema.js";
+import Checking from "../models/CheckingSchema.js";
+import Owner from "../models/OwnerSchema.js"
 
 // Update User
 export const updateUser = async (req, res) => {
@@ -78,3 +80,42 @@ export const getAllUsers = async (req, res) => {
       });
     }
   };
+
+  export const getUserProfile = async(req,res)=>{
+    const userId = req.userId
+
+    try {
+
+        const user = await User.findById(userId)
+
+        if(!user){
+            return res.status(404).json({success:false,message:'User not found'})
+        }
+
+        const {password, ...reset} =user._doc
+
+        res.status(200).json({success:true, message:'Profile info is getting', data:{...reset}})
+
+    } catch (err) {
+        res.status(500).json({ success:false, message: "Something went wrong, cannot get"});
+    }
+};
+
+export const getMyCheckings = async(req,res)=>{
+
+    try {
+        //step 1 retrieve checkings from checking for specific user
+    const checkings = await Checking.find({ user: req.userId });
+
+    //step 2 extract owner ids from checkings
+    const ownerIds = checkings.map(el => el.owner.id);
+
+    //step 3 retrieve owners using owner ids
+    const owners = await Owner.find({_id: {$in:ownerIds}}).select('-password')
+
+    res.status(200).json({success:true, message:'Checkings are getting', data:owners})
+
+    } catch (error) {
+        res.status(500).json({ success:false, message: "Something went wrong, cannot get"});
+    }
+}

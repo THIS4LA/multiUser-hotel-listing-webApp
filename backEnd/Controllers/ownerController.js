@@ -1,3 +1,4 @@
+import Checking from "../models/CheckingSchema.js";
 import Owner from "../models/OwnerSchema.js";
 
 export const updateOwner = async (req, res) => {
@@ -77,5 +78,34 @@ export const getAllOwners = async (req, res) => {
     });
   } catch (err) {
     res.status(404).json({ success: false, message: "Not found" });
+  }
+};
+
+export const getOwnerProfile = async (req, res) => {
+  const ownerId = req.userId;
+
+  try {
+    const owner = await Owner.findById(ownerId);
+
+    if (!owner) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Owner not found" });
+    }
+
+    const { password, ...reset } = owner._doc;
+    const checkings = await Checking.find({ owner: ownerId });
+
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "Profile info is getting",
+        data: { ...reset, checkings },
+      });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ success: false, message: "Something went wrong, cannot get" });
   }
 };

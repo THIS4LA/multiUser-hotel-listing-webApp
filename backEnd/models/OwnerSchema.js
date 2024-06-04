@@ -30,7 +30,7 @@ const OwnerSchema = new mongoose.Schema({
     enum: ["pending", "approved", "cancelled"],
     default: "pending",
   },
-  appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
+  checkings: [{ type: mongoose.Types.ObjectId, ref: "Checking" }],
 });
 
 export default mongoose.model("Owner", OwnerSchema);

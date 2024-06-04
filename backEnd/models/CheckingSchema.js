@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const bookingSchema = new mongoose.Schema(
+const checkingSchema = new mongoose.Schema(
   {
     owner: {
       type: mongoose.Types.ObjectId,
@@ -12,11 +12,6 @@ const bookingSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    ticketPrice: { type: String, required: true },
-    appointmentDate: {
-      type: Date,
-      required: true,
-    },
     checkingDate: {
       type: Date,
       required: true,
@@ -26,12 +21,14 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
     checkingTime: {
-      type: TimeRanges,
+      type: String,
       required: true,
+      match: /^([01][0-9]|2[0-3]):[0-5][0-9]$/, // validate time format (HH:mm)
     },
     checkOutTime: {
-      type: TimeRanges,
+      type: String,
       required: true,
+      match: /^([01][0-9]|2[0-3]):[0-5][0-9]$/, // validate time format (HH:mm)
     },
 
     phone: {
@@ -61,11 +58,11 @@ const bookingSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["pending", "available", "n/a"],
+      enum: ["pending", "available", "N/A"],
       default: "pending",
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Booking", bookingSchema);
+export default mongoose.model("Checking", checkingSchema);

@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     default: "guest",
   },
   gender: { type: String, enum: ["male", "female"] },
-  appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
+  checkings: [{ type: mongoose.Types.ObjectId, ref: "Checking" }],
 });
 
 export default mongoose.model("User", UserSchema);
