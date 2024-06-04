@@ -7,9 +7,12 @@ import {
     getSingleOwner,
 } from "../Controllers/ownerController.js";
 import { authenticate, restrict } from "../auth/verifyToken.js";
+import reviewRouter from "./review.js";
 
 const router = express.Router();
 
+//nested route
+router.use("/:ownerId/reviews", reviewRouter);
 router.get("/:id", getSingleOwner);
 router.get("/", getAllOwners);
 router.put("/:id", authenticate, restrict(["owner"]), updateOwner);
