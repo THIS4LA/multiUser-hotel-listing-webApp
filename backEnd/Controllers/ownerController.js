@@ -39,7 +39,9 @@ export const getSingleOwner = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const owner = await Owner.findById(id).select("-password");
+    const owner = await Owner.findById(id)
+      .populate("reviews")
+      .select("-password");
 
     res.status(200).json({
       success: true,
@@ -53,28 +55,27 @@ export const getSingleOwner = async (req, res) => {
 
 export const getAllOwners = async (req, res) => {
   try {
-    const {query} = req.query;
+    const { query } = req.query;
     let owners;
 
-    if(query) {
-        owners = await Owner.find({
-            isApproved: "approved",
-            $or: [
-                {name:{ $regex: query, $options: "i"}},
-                {category: { $regex: query, $options: "i"}},
-            ],
-        }).select("-password");
-    }   else{
-        owners = await Owner.find({isApproved: "approved"}).select("-password");
+    if (query) {
+      owners = await Owner.find({
+        isApproved: "approved",
+        $or: [
+          { name: { $regex: query, $options: "i" } },
+          { category: { $regex: query, $options: "i" } },
+        ],
+      }).select("-password");
+    } else {
+      owners = await Owner.find({ isApproved: "approved" }).select("-password");
     }
 
-        res.status(200).json({
-            success: true,
-            message: "users found",
-            data: owners,
-        })
-
-    } catch (err) {
+    res.status(200).json({
+      success: true,
+      message: "users found",
+      data: owners,
+    });
+  } catch (err) {
     res.status(404).json({ success: false, message: "Not found" });
   }
 };
