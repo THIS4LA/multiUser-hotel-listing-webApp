@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import signupImg from "../assets/images/signUp.png";
 import avatar from "../assets/images/user.png";
-import { Link } from "react-router-dom";
+import uploadImageToCloudinary from "../utils/uploadCloudinary.js";
+import { BASE_URL } from "../config.js";
+import {toast} from 'react-toastify';
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState("");
+  const [loading, setLoading] = useState(false)
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,38 +22,56 @@ const Signup = () => {
   });
   const [error, setError] = useState("");
 
+  const navigate = useNavigate()
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleFileInputChange = async (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
-    // If you need to preview the image
-    const preview = URL.createObjectURL(file);
-    setPreviewURL(preview);
+    const data = await uploadImageToCloudinary(file);
+
+    setPreviewURL(data.url);
+    setSelectedFile(data.url);
+    setFormData({ ...formData, photo: data.url });
   };
 
-  const submitHandler = async (event) => {
+  const submitHandler = async event=>{
     event.preventDefault();
+    setLoading(true)
 
-    // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setError("Passwords doesn't match");
+      setLoading(false);
       return;
     }
 
-    // Clear any previous errors
-    setError("");
-
-    // Proceed with form submission
-    console.log(formData);
-
     try {
-      // Your API call here
-    } catch (error) {
-      console.error("Error submitting form:", error);
+     const res = await fetch (`${BASE_URL}/auth/register`,{
+      method: "post",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+     })
+
+     const {message} = await res.json()
+
+     if(!res.ok){
+      throw new Error(message)
+     }
+
+     setLoading(false)
+     toast.success(message)
+     navigate('/login')
+
+
+    } catch (err) {
+      toast.error(err.message)
+      setLoading(false)
     }
+
   };
 
   return (
@@ -150,16 +174,16 @@ const Signup = () => {
               </div>
 
               <div className="mb-5 flex items-center gap-3">
-                <figure
+              { selectedFile && <figure
                   className="w-[60px] h-[60px] rounded-full border-2 border-solid 
-            border-redColor flex items-center justify-center"
+            border-redColor flex items-center justify-center overflow-hidden"
                 >
                   <img
-                    src={previewURL || avatar}
+                    src={previewURL}
                     alt="avatar"
                     className="w-full rounded-full"
                   />
-                </figure>
+                </figure>}
 
                 <div className="relative w-[130px] h-[50px]">
                   <input
@@ -167,7 +191,7 @@ const Signup = () => {
                     name="photo"
                     id="customFile"
                     onChange={handleFileInputChange}
-                    accept=".jpg, .png"
+                    accept=".jpg, .png, .jpeg"
                     className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
                   />
                   <label
@@ -183,10 +207,11 @@ const Signup = () => {
 
               <div className="mt-7">
                 <button
+                  disabled={loading && true}
                   type="submit"
                   className="w-full bg-redColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3"
                 >
-                  Register
+                  { loading ? <ScaleLoader size={35} color="#ffffff" /> : 'SignUp'}
                 </button>
               </div>
               <p className="mt-5 text-textColor text-center">
