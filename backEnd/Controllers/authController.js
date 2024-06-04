@@ -79,7 +79,7 @@ export const login = async (req, res) => {
       user = guest;
     }
 
-    if (doctor) {
+    if (owner) {
       user = owner;
     }
 

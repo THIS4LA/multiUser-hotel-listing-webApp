@@ -5,15 +5,11 @@ import User from "../models/UserSchema.js";
 export const authenticate = async (req, res, next) => {
   //get token from headers
   const authToken = req.headers.authorization;
-
-  //check token is exists
-  if (!authToken || !authToken.startsWith("Bearer ")) {
-    return res.status(401).json({
-      success: false,
-      message: "No token, authorization denied",
-    });
+  //Bearer actual toke
+  //check if exist
+  if (!authToken || !authToken.startsWith("Bearer")) {
+    return res.status(401).json({ message: "No token,Not Authorized" });
   }
-
   try {
     const token = authToken.split(" ")[1];
 
@@ -23,38 +19,33 @@ export const authenticate = async (req, res, next) => {
     req.userId = decoded.id;
     req.role = decoded.role;
 
-    next();
+    next(); //calling next function(must be)
   } catch (err) {
     if (err.name === "TokenExpiredError") {
-      return res.status(401).json({
-        message: "Token is expired",
-      });
+      return res.status(401).json({ message: "Token Expired" });
     }
-
-    return res.status(401).json({ success: false, message: "Invalid token" });
+    return res.status(401).json({ success: false, message: "Invalid Token" });
   }
 };
 
-export const restrict = roles => async (req, res, next) => {
-    const userId = req.userId;
+export const restrict = (roles) => async (req, res, next) => {
+  const userId = req.userId;
 
-    let user;
+  let user;
 
-    const guest = await User.findById(userId);
-    const owner = await Owner.findById(userId);
+  const guest = await User.findById(userId);
+  const owner = await Owner.findById(userId);
 
-    if(guest) {
-        user = guest;
-    }
+  if (guest) {
+    user = guest;
+  }
 
-    if(owner) {
-        user = owner;
-    }
+  if (owner) {
+    user = owner;
+  }
 
-    if(!roles.includes(user.role)){
-        return res.status(401).json({ success: false, message: "You're not authorized" });
-
-    }
-
-    next();
-}
+  if (!roles.includes(user.role)) {
+    return res.status(401).json({ message: "Not Authorized" });
+  }
+  next();
+};
