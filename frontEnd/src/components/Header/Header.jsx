@@ -1,9 +1,10 @@
 // Importing necessary modules from React and other libraries
-import { useEffect,useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import logo from "../../assets/images/logo-asgard.png";
 import { NavLink, Link } from "react-router-dom"; // Importing NavLink and Link components from react-router-dom for navigation
-import userImg from "../../assets/images/avatar-icon.png";
+import userImg from "../../assets/images/user.png";
 import { BiMenu } from "react-icons/bi"; // Importing menu icon from react-icons
+import { authContext } from "../../context/AuthContext";
 
 // Defining navigation links for the menu
 const navLinks = [
@@ -30,6 +31,7 @@ const Header = () => {
   // useRef hook to create references for header and menu elements
   const headerRef = useRef(null);
   const menuRef = useRef(null);
+  const { user, role, token } = useContext(authContext);
 
   // Function to handle sticky header on scroll
   const handleStickyHeader = () => {
@@ -92,22 +94,37 @@ const Header = () => {
 
           {/* Right section of the header with user icon, login button, and menu icon */}
           <div className="flex items-center gap-4">
-            <div className="hidden">
-              <Link to="/">
-                <figure className="w-[35px] h-[35px] rounded-full">
-                  <img src={userImg} className="w-full rounded-full" alt="dp" />
-                </figure>
-              </Link>
-            </div>
-            {/* Login button */}
-            <Link to="/login">
-              <button
-                className="bg-redColor py-2 px-6 text-white font-[600] h-[44px] flex items-center
+            {token && user ? (
+              <div>
+                <Link
+                  to={`${
+                    role === "owner"
+                      ? "/owners/profile/me"
+                      : "/users/profile/me"
+                  }`}
+
+                  className="flex items-center gap-2"
+                >
+                  <h2 className="text-[16px] font-[500] text-headingColor">{user?.name}</h2>
+                  <figure className="w-[35px] h-[35px] rounded-full overflow-hidden">
+                    <img
+                      src={user?.photo || userImg}
+                      className="w-full rounded-full object-cover"
+                      alt="dp"
+                    />
+                  </figure>
+                </Link>
+              </div>
+            ) : (
+              <Link to="/login">
+                <button
+                  className="bg-redColor py-2 px-6 border-pinkColor text-white font-[600] h-[44px] flex items-center hover:bg-pinkColor hover:border-redColor border-2
                 justify-center rounded-[50px]"
-              >
-                Login
-              </button>
-            </Link>
+                >
+                  Login
+                </button>
+              </Link>
+            )}
             {/* Sidebar menu icon for small screens */}
             <span className="md:hidden" onClick={toggleMenu}>
               <BiMenu className="w-6 h-6 cursor-pointer" />

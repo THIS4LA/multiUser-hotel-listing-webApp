@@ -49,7 +49,7 @@ const Home = () => {
     </section>
  {/* end hero section */}
     <section>
-          <div className="container">
+          <div className="container lg:pt-[120px]">
             <div className="lg:w-[470px] mx-auto">
               <h2 className="heading text-center" id='category'>
                 Exploring Diverse Hotel<span className='pl-2 pr-2 text-redColor'>Categories</span> 
