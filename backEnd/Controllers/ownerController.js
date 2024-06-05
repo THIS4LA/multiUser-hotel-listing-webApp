@@ -65,6 +65,7 @@ export const getAllOwners = async (req, res) => {
         $or: [
           { name: { $regex: query, $options: "i" } },
           { category: { $regex: query, $options: "i" } },
+          { address: { $regex: query, $options: "i" } },
         ],
       }).select("-password");
     } else {
