@@ -1,21 +1,18 @@
 import React from 'react'
 import { formateDate } from '../../utils/formateDate'
 
-const OwnerAbout = () => {
+const OwnerAbout = ({name, about, rankings}) => {
   return (
     <div>
       <div>
         <h3 className="text-[20px] leading-[30px] text-redColor font-semibold flex items-center gap-2">
           About of
           <span className="text-irisBlueColor font-bold text-[24px] leading-9 ">
-          Courtyard by Marriott Colombo
+          {name}
           </span>
         </h3>
         <p className="text__para">
-        Facing Beira Lake, this refined, colourful hotel is a 4-minute walk from Gangaramaya Temple, 2 km from Colombo National Museum and 1 km from Viharamahadevi Park. Fort railway station is 4 km away.
-Stylish, airy rooms offer Wi-Fi, TVs and minifridges. Upgraded rooms add lake and ocean views. Suites feature separate living areas. Room service is available.
-
-There&apos;s a cafe and a lounge, plus a casual restaurant with an international menu. Other amenities include an outdoor pool and a fitness centre, as well as breakfast and parking.
+        {about || "N/A"}
         </p>
       </div>
       <div className="mt-12">
@@ -23,26 +20,22 @@ There&apos;s a cafe and a lounge, plus a casual restaurant with an international
           Rankings
         </h3>
         <ul className="pt-4 md:pt-5">
-          {/* rank 1st */}
-          <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+        {rankings && rankings.length > 0 ? ( rankings?.map((item, index) => (
+          <li key={index} className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
             <div>
-              <span className="text-irisBlueColor text-[15px] leading-6 font-semibold ">
-                {formateDate('02-02-2023')} - {formateDate('02-02-2024')}
+              <span className="text-blue-400 text-[15px] leading-6 font-semibold ">
+              {formateDate(item.startingDate)} - {formateDate(item.endingDate)}
               </span>
-              <p className="text-[15px] leading-6 font-medium text-redColor">1st</p>
+              <p className="pt-2 font-bold text-[17px] leading-5 text-textColor">{item.ranking}</p>
+
             </div>
-            <p className="text-[14px] leading-5 font-medium text-textColor">Category of Hotels, Casinos and Resorts.</p>
+            <p className="text-[15px] font-bold leading-6 text-redColor">{item.place}</p>
           </li>
-          {/* rank 2nd */}
-          <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
-            <div>
-              <span className="text-irisBlueColor text-[15px] leading-6 font-semibold ">
-                {formateDate('02-02-2023')} - {formateDate('02-02-2024')}
-              </span>
-              <p className="text-[16px] leading-6 font-medium text-redColor">16th</p>
-            </div>
-            <p className="text-[14px] leading-5 font-medium text-textColor">Across all companies</p>
-          </li>
+          ))) : (
+            <p className="text-redColor font-semibold text-[16px]">No rankings available</p>
+          )
+        } 
+          
         </ul>
       </div>
     </div>

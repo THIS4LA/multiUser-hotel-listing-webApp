@@ -11,6 +11,7 @@ const OwnerSchema = new mongoose.Schema({
   },
 
   // Fields for owner only
+  address : { type: String },
   category : { type: String },
   rankings : {
     type: Array,
