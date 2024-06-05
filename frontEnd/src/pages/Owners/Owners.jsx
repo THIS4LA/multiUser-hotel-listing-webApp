@@ -1,8 +1,35 @@
 import OwnerCard from "./../../components/Owners/OwnerCard";
-import { owners } from "./../../assets/data/owners";
 import Testimonial from "../../components/Testimonial/Testimonial";
+import { BASE_URL } from "../../config";
+import useFetchData from "../../hooks/useFetchData";
+import Loading from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
+import { useEffect, useState } from "react";
 
 const Owners = () => {
+  const [query, setQuery] = useState("");
+  const [debounceQuery, setDebounceQuery] = useState("");
+
+  const handleSearch = () => {
+    setQuery(query.trim());
+
+    console.log("handle search");
+  };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebounceQuery(query);
+    }, 700);
+
+    return () => clearTimeout(timeout);
+  }, [query]);
+
+  const {
+    data: owners,
+    loading,
+    error,
+  } = useFetchData(`${BASE_URL}/owners?query=${debounceQuery}`);
+
   return (
     <>
       <section className="bg-[#fff9ea]">
@@ -17,8 +44,11 @@ const Owners = () => {
               className="py-4 pl-4 pr-2 bg-transparent w-full focus:outline-none cursor-pointer
              placeholder:text-blueColor"
               placeholder="Search Place"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
-            <button className="btn mt-0 rounded-[0px] rounded-r-md">
+            <button className="btn mt-0 rounded-[0px] rounded-r-md"
+            onClick={handleSearch}>
               Search
             </button>
           </div>
@@ -26,12 +56,24 @@ const Owners = () => {
       </section>
 
       <section>
-        <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {owners.map((owner) => (
-              <OwnerCard key={owner.id} owner={owner} />
-            ))}
-          </div>
+      <div className="container">
+          {loading && <Loading />}
+          {error && <Error />}
+          {!loading && !error && Array.isArray(owners) && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+              {owners.map((owner) => (
+                // Use optional chaining and provide default values to avoid null property access
+                <OwnerCard
+                  key={owner?.id || owner?._id} // Using either `id` or `_id` as key
+                  owner={{
+                    ...owner,
+                    name: owner?.name || "Unknown",
+                    category: owner?.category || "General",
+                  }}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

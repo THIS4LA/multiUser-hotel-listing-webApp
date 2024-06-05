@@ -106,7 +106,7 @@ const Header = () => {
                   className="flex items-center gap-2"
                 >
                   <h2 className="text-[16px] font-[500] text-headingColor">{user?.name}</h2>
-                  <figure className="w-[35px] h-[35px] rounded-full overflow-hidden">
+                  <figure className="w-[50px] h-[50px] rounded-full overflow-hidden bg-white border-2 border-redColor">
                     <img
                       src={user?.photo || userImg}
                       className="w-full rounded-full object-cover"

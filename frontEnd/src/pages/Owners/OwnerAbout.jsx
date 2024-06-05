@@ -5,9 +5,9 @@ const OwnerAbout = ({name, about, rankings}) => {
   return (
     <div>
       <div>
-        <h3 className="text-[20px] leading-[30px] text-redColor font-semibold flex items-center gap-2">
+        <h3 className="text-[20px] leading-[30px] text-blueColor font-semibold flex items-center gap-2">
           About of
-          <span className="text-irisBlueColor font-bold text-[24px] leading-9 ">
+          <span className=" text-redColor font-bold text-[24px] leading-9 ">
           {name}
           </span>
         </h3>

@@ -8,10 +8,13 @@ import starIcon from "../../assets/images/Star.png";
 import userImg from "../../assets/images/user.png";
 import OwnerAbout from "../../pages/Owners/OwnerAbout"
 import Profile from "./Profile";
+import { FaPhoneAlt } from "react-icons/fa";
+import Checkings from "./Checkings";
 
 const Dashboard = () => {
   const { data, loading, error } = useGetProfile(`${BASE_URL}/owners/profile/me`);
   const [tab, setTab] = useState("overview");
+
   return (
        <section>
       <div className="max-w-[1170px] px-5 mx-auto">
@@ -47,7 +50,7 @@ const Dashboard = () => {
               {tab === "overview" && (
                   <div>
                     <div className="flex items-center gap-4 mb-10">
-                      <figure className="max-w-[150px] max-h-[150px] ">
+                      <figure className="max-w-[150px] max-h-[150px] border-2 border-redColor">
                         <img
                           src={data?.photo || userImg}
                           alt="profile pic"
@@ -55,19 +58,25 @@ const Dashboard = () => {
                         />
                       </figure>
                       <div>
+                        <h3 className="text-[22px] leading-9 font-bold text-headingColor mt-3 pb-2">
+                        {data?.name || "N/A"}
+                        </h3>
                         <span
-                          className="bg-[#CCF0F3] text-irisBlueColor py-1 px-4 lg:py-2 lg:px-6
+                          className="bg-[#CCF0F3] text-blueColor py-2 px-4 lg:py-2 lg:px-6
                           rounded text-[12px] leading-4 lg:text-[16px] lg:leading-6 font-semibold"
                         > {data.category || "N/A"}
                         </span>
-                        <h3 className="text-[22px] leading-9 font-bold text-headingColor mt-3">
-                        {data?.name || "N/A"}
-                        </h3>
-                        <div className="flex items-center gap-[6px]">
+                        <div className="flex pt-3">
+                        <div className="flex items-center gap-[6px] pt-3">
                             <span className="flex items-center gap-[6px] text-headingColor text-[14px]
                             leading-5 lg:text-[16px] lg:leading-6 font-semibold"><img src={starIcon} alt="starIcon" />{data?.averageRating}</span>
                             <span className="text-textColor text-[14px] leading-5 lg:text-[16px]
                             lg:leading-6 font-semibold">({data?.totalRating})</span>
+                        </div>
+                        <div className="pl-[25px] flex items-center gap-2 font-[15px] leading-6 pt-3">
+                          <FaPhoneAlt />
+                          <span className="text-headingColor font-bold ">+94{data?.phone || "N/A"}</span>
+                        </div>
                         </div>
                         <p className="text__para font-[15px] lg:max-w-[390px] leading-6:">{data?.address || "N/A"}</p>
                       </div>
@@ -78,7 +87,7 @@ const Dashboard = () => {
                 )}
 
 
-                {tab === "checkings" && <div>checkings</div>}
+                {tab === "checkings" && <Checkings checkings={data.checkings} />}
                 {tab === "settings" && <Profile ownerData={data} />}
               </div>
             </div>

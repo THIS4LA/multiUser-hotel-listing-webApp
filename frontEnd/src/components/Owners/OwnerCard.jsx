@@ -1,17 +1,16 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
 import starIcon from '../../assets/images/Star.png';
 import { FaPlay } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-const OwnerCard = ({ owner = {} }) => {
+const OwnerCard = ({ owner }) => {
     const {
-        name = 'N/A',
-        type = 'N/A',
-        avgRating = 0,
-        totalRating = 0,
-        photo = '',
-        address = 'N/A',
+        name,
+        category,
+        avgRating,
+        totalRating,
+        photo,
+        address,
     } = owner;
 
     return (
@@ -31,7 +30,7 @@ const OwnerCard = ({ owner = {} }) => {
 
                 <div className='mt-2 lg:mt-4 flex items-center justify-between'>
                     <span className='bg-[#CCF0F3] text-irisBlueColor py-1 px-2 lg:py-2 lg:px-6 text-[12px] leading-4 lg:text-[16px] lg:leading-7 font-semibold rounded'>
-                        {type}
+                        {category}
                     </span>
 
                     <div className='flex items-center gap-[6px]'>
@@ -53,7 +52,7 @@ const OwnerCard = ({ owner = {} }) => {
                     </h3>
                 </div>
                 <Link 
-                    to='/owners'
+                    to={`/owners/${owner._id}`}
                     className='w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-solid border-redColor hover:border-blueColor flex items-center justify-center group'>
                     <FaPlay className='group-hover:text-blueColor text-redColor w-5 h-5' />
                 </Link>

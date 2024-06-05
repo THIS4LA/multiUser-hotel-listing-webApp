@@ -162,8 +162,8 @@ const Profile = ({ ownerData }) => {
           <p className="form__label">Address*</p>
           <textarea
             type="text"
-            name="about"
-            value={formData.adress}
+            name="address"
+            value={formData.address}
             onChange={handleInputChange}
             placeholder="Address"
             className="form__input"
