@@ -1,5 +1,6 @@
 import User from "../models/UserSchema.js";
 import Owner from "../models/OwnerSchema.js";
+import Admin from "../models/AdminSchema.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
@@ -7,9 +8,7 @@ const generateToken = (user) => {
   return jwt.sign(
     { id: user._id, role: user.role },
     process.env.JWT_SECRET_KEY,
-    {
-      expiresIn: "15d",
-    }
+    { expiresIn: "15d" }
   );
 };
 
@@ -19,50 +18,46 @@ export const register = async (req, res) => {
   try {
     let user = null;
 
-    if (role === "guest") {
-      user = await User.findOne({ email });
-    } else if (role === "owner") {
-      user = await Owner.findOne({ email });
+    switch (role) {
+      case "guest":
+        user = await User.findOne({ email });
+        break;
+      case "owner":
+        user = await Owner.findOne({ email });
+        break;
+      case "admin":
+        user = await Admin.findOne({ email });
+        break;
+      default:
+        return res.status(400).json({ message: "Invalid role" });
     }
 
-    //check if user exist
+    // Check if user exists
     if (user) {
-      return res.status(400).json({ msg: "User already exist" });
+      return res.status(400).json({ message: "User already exists" });
     }
 
-    //hash password
+    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
 
-    //create new user
-    if (role === "guest") {
-      user = new User({
-        name,
-        email,
-        password: hashPassword,
-        photo,
-        role,
-      });
-    }
-
-    if (role === "owner") {
-      user = new Owner({
-        name,
-        email,
-        password: hashPassword,
-        photo,
-        role,
-      });
+    // Create new user
+    switch (role) {
+      case "guest":
+        user = new User({ name, email, password: hashPassword, photo, role });
+        break;
+      case "owner":
+        user = new Owner({ name, email, password: hashPassword, photo, role });
+        break;
+      case "admin":
+        user = new Admin({ name, email, password: hashPassword, role });
+        break;
     }
 
     await user.save();
-    res
-      .status(200)
-      .json({ success: true, message: "User successfully created" });
+    res.status(200).json({ success: true, message: "User successfully created" });
   } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "internal server error" + err.message });
+    res.status(500).json({ success: false, message: "Internal server error: " + err.message });
   }
 };
 
@@ -74,42 +69,38 @@ export const login = async (req, res) => {
 
     const guest = await User.findOne({ email });
     const owner = await Owner.findOne({ email });
+    const admin = await Admin.findOne({ email });
 
     if (guest) {
       user = guest;
-    }
-
-    if (owner) {
+    } else if (owner) {
       user = owner;
+    } else if (admin) {
+      user = admin;
     }
 
-    //check if user exist or not
+    // Check if user exists or not
     if (!user) {
       return res.status(404).json({ message: "User does not exist" });
     }
 
-    //compare password
-    const isPasswordMatch = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
+    // Compare password
+    const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
 
     if (!isPasswordMatch) {
-      return res
-        .status(400)
-        .json({ status: false, message: "Invalid credentials" });
+      return res.status(400).json({ status: false, message: "Invalid credentials" });
     }
 
-    //get token
+    // Get token
     const token = generateToken(user);
 
-    const { password, role, checkings, ...rest } = user._doc;
+    const { password: _, role, ...userData } = user._doc;
 
     res.status(200).json({
       status: true,
       message: "User logged in successfully",
       token,
-      data: { ...rest },
+      data: userData,
       role,
     });
   } catch (err) {
