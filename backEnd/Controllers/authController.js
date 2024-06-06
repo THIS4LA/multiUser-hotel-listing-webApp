@@ -91,10 +91,12 @@ export const login = async (req, res) => {
       return res.status(400).json({ status: false, message: "Invalid credentials" });
     }
 
+
     // Get token
     const token = generateToken(user);
 
     const { password: _, role, ...userData } = user._doc;
+
 
     res.status(200).json({
       status: true,

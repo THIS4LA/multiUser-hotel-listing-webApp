@@ -82,6 +82,34 @@ export const getAllOwners = async (req, res) => {
   }
 };
 
+export const getAllOwners2 = async (req, res) => {
+  try {
+    const { query } = req.query;
+    let owners;
+
+    if (query) {
+      owners = await Owner.find({
+        $or: [
+          { name: { $regex: query, $options: "i" } },
+          { category: { $regex: query, $options: "i" } },
+          { address: { $regex: query, $options: "i" } },
+        ],
+      }).select("-password");
+    } else {
+      owners = await Owner.find().select("-password");
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Owners found",
+      data: owners,
+    });
+  } catch (err) {
+    res.status(404).json({ success: false, message: "Not found" });
+  }
+};
+
+
 export const getOwnerProfile = async (req, res) => {
   const ownerId = req.userId;
 

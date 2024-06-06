@@ -4,6 +4,7 @@ import {
     updateOwner,
     deleteOwner,
     getAllOwners,
+    getAllOwners2,
     getSingleOwner,
     getOwnerProfile,
 } from "../Controllers/ownerController.js";
@@ -16,7 +17,8 @@ const router = express.Router();
 router.use("/:ownerId/reviews", reviewRouter);
 router.get("/:id", getSingleOwner);
 router.get("/", getAllOwners);
-router.put("/:id", authenticate, restrict(["owner"]), updateOwner);
+router.get("/all", getAllOwners2);
+router.put("/:id", authenticate, restrict(["owner","admin"]), updateOwner);
 router.delete("/:id", authenticate, restrict(["owner", "admin"]), deleteOwner);
 router.get("/profile/me", authenticate, restrict(["owner"]), getOwnerProfile);
 
