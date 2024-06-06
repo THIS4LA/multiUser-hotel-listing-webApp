@@ -27,9 +27,9 @@ const Tabs = ({ tab, setTab }) => {
           onClick={() => setTab("overview")}
           className={`${
             tab === "overview"
-              ? "bg-pinkColor text-primaryColor "
+              ? "bg-gray-500 text-primaryColor "
               : "bg-transparent text-headingColor "
-          } w-full btn mt-0 rounded-md`}
+          } w-full btn hover:bg-slate-200 hover:border-black border-2 hover:text-black mt-0 rounded-md`}
         >
           Overview
         </button>
@@ -37,9 +37,9 @@ const Tabs = ({ tab, setTab }) => {
           onClick={() => setTab("ownersTab")}
           className={`${
             tab === "ownersTab"
-            ? "bg-pinkColor text-primaryColor "
+            ? "bg-gray-500 text-primaryColor "
               : "bg-transparent text-headingColor"
-          } w-full btn mt-0 rounded-md`}
+          } w-full btn hover:bg-slate-200 hover:border-black border-2 hover:text-black mt-0 rounded-md`}
         >
           Owners
         </button>
@@ -47,9 +47,9 @@ const Tabs = ({ tab, setTab }) => {
           onClick={() => setTab("usersTab")}
           className={`${
             tab === "usersTab"
-            ? "bg-pinkColor text-primaryColor "
+            ? "bg-gray-500 text-primaryColor "
               : "bg-transparent text-headingColor"
-          } w-full btn mt-0 rounded-md`}
+          } w-full btn hover:bg-slate-200 hover:border-black border-2 hover:text-black mt-0 rounded-md`}
         >
           Users
         </button>
@@ -57,9 +57,9 @@ const Tabs = ({ tab, setTab }) => {
           onClick={() => setTab("suggestions")}
           className={`${
             tab === "suggestions"
-            ? "bg-pinkColor text-primaryColor "
+            ? "bg-gray-500 text-primaryColor "
               : "bg-transparent text-headingColor"
-          } w-full btn mt-0 rounded-md`}
+          } w-full btn hover:bg-slate-200 hover:border-black border-2 hover:text-black mt-0 rounded-md`}
         >
           Suggestions
         </button>
@@ -69,11 +69,6 @@ const Tabs = ({ tab, setTab }) => {
                   className="w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white"
                 >
                   Logout
-                </button>
-                <button
-                  className="w-full bg-red-600 mt-4 p-3 text-[16px] leading-7 rounded-md text-white"
-                >
-                  Delete Account
                 </button>
               </div>
       </div>
