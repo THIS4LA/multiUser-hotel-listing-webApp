@@ -25,6 +25,6 @@ router.get("/users", authenticate, restrict(["admin"]), getAllUsers);
 router.delete("/users/:id", authenticate, restrict(["admin"]), deleteUser);
 
 // Route for Admin Profile
-router.get("/profile", authenticate, restrict(["admin"]), getAdminProfile);
+router.get("/profile/me", authenticate, restrict(["admin"]), getAdminProfile);
 
 export default router;

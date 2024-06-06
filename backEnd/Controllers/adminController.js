@@ -88,25 +88,22 @@ export const deleteUser = async (req, res) => {
     }
 };
 
+
 export const getAdminProfile = async (req, res) => {
+    const adminId = req.userId;  // Correctly get the admin ID from req.userId
+  
     try {
-      console.log("Request received to fetch admin profile");
+      const admin = await Admin.findById(adminId);  // Fetch the admin profile from the database
   
-      const adminId = req.user.id;
-      console.log("Admin ID:", adminId);
-  
-      // Fetch the admin profile from the database
-      const adminProfile = await Admin.findById(adminId);
-  
-      if (!adminProfile) {
-        console.log("Admin not found");
-        return res.status(404).json({ message: "Admin not found" });
+      if (!admin) {
+        return res.status(404).json({ success: false, message: 'Admin not found' });
       }
   
-      console.log("Admin profile found:", adminProfile);
-      res.status(200).json({ data: adminProfile });
-    } catch (error) {
-      console.error("Error fetching admin profile:", error); // Error log
-      res.status(500).json({ message: "Internal Server Error", error: error.message });
+      const { password, ...rest } = admin._doc;  // Destructure to exclude the password
+  
+      res.status(200).json({ success: true, message: 'Profile info retrieved successfully', data: { ...rest } });
+    } catch (err) {
+      res.status(500).json({ success: false, message: "Something went wrong, cannot retrieve profile info" });
     }
-};
+  };
+  

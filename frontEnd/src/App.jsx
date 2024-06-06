@@ -6,10 +6,9 @@ function App() {
   return (
     <>
       <div>
-        <Chat />
         <Layout />
         </div>
-
+        <Chat />
     </>
   )
 }

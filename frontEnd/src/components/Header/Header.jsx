@@ -98,14 +98,17 @@ const Header = () => {
               <div>
                 <Link
                   to={`${
-                    role === "owner"
+                    role === "admin"
+                      ? "/admins/profile/me"
+                      : role === "owner"
                       ? "/owners/profile/me"
                       : "/users/profile/me"
                   }`}
-
                   className="flex items-center gap-2"
                 >
-                  <h2 className="text-[16px] font-[500] text-headingColor">{user?.name}</h2>
+                  <h2 className="text-[16px] font-[500] text-headingColor">
+                    {user?.name}
+                  </h2>
                   <figure className="w-[50px] h-[50px] rounded-full overflow-hidden bg-white border-2 border-redColor">
                     <img
                       src={user?.photo || userImg}
