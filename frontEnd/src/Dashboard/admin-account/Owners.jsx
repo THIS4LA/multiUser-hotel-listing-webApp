@@ -58,14 +58,54 @@ const Owners = () => {
       }
 
       toast.success(message);
-      // Update the UI by refetching the data or updating the local state
-      setDebounceQuery(query); // Triggers the useEffect to refetch data
+
+      setDebounceQuery(query);
     } catch (err) {
       toast.error(err.message);
     } finally {
       setLoading(false);
     }
   };
+
+  const deleteOwner = async (ownerId) => {
+    setLoading(true);
+
+    if (!token) {
+      toast.error("Authentication token is missing.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch(`${BASE_URL}/owners/${ownerId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const { message } = await res.json();
+
+      if (!res.ok) {
+        throw new Error(message);
+      }
+
+      toast.success(message);
+      setDebounceQuery(query);
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = (ownerId) => {
+    if (window.confirm("Are you sure you want to delete this owner?")) {
+      deleteOwner(ownerId);
+    }
+  };
+
   const handleStatusChange = (ownerId, newStatus) => {
     updateOwner(ownerId, newStatus);
   };
@@ -100,16 +140,26 @@ const Owners = () => {
               </thead>
               <tbody>
                 {owners.map((owner) => (
-                  <tr key={owner?.id || owner?._id} className="border-b border-gray-500">
-                    <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
+                  <tr
+                    key={owner?.id || owner?._id}
+                    className="border-b border-gray-500"
+                  >
+                    <th
+                      scope="row"
+                      className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
+                    >
                       <img
                         src={owner?.photo}
                         className="w-10 h-10 border-2 border-gray-500"
                         alt=""
                       />
                       <div className="pl-3">
-                        <div className="text-base font-semibold pr-3">{owner?.name}</div>
-                        <div className="text-normal text-gray-500">{owner?.email}</div>
+                        <div className="text-base font-semibold pr-3">
+                          {owner?.name}
+                        </div>
+                        <div className="text-normal text-gray-500">
+                          {owner?.email}
+                        </div>
                       </div>
                     </th>
                     <td className="x-5 pl-3">{owner?.address}</td>
@@ -118,7 +168,9 @@ const Owners = () => {
                         name="status"
                         value={owner?.isApproved}
                         className="text-textColor font-semibold text-[15px] leading-7 pr-4 py-3 focus:outline-none"
-                        onChange={(e) => handleStatusChange(owner._id, e.target.value)}
+                        onChange={(e) =>
+                          handleStatusChange(owner._id, e.target.value)
+                        }
                       >
                         <option value="pending">Pending</option>
                         <option value="approved">Approved</option>
@@ -127,13 +179,18 @@ const Owners = () => {
                     <td>
                       <button
                         className="text-[35px] text-green-500 pl-7"
-                        onClick={() => handleStatusChange(owner._id, formData.isApproved)}
+                        onClick={() =>
+                          handleStatusChange(owner._id, formData.isApproved)
+                        }
                       >
                         <GrUpdate />
                       </button>
                     </td>
                     <td>
-                      <button className="text-[35px] text-redColor pl-6">
+                      <button
+                        className="text-[35px] text-redColor pl-6"
+                        onClick={() => handleDelete(owner._id)}
+                      >
                         <MdDeleteForever />
                       </button>
                     </td>

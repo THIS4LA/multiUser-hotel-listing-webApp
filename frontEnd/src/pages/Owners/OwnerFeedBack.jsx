@@ -16,17 +16,17 @@ const OwnerFeedBack = ({ reviews, totalRating }) => {
 
         {reviews?.map((review, index) => (
           <div key={index} className="flex justify-between gap-10 mb-[30px]">
-            <div className="flex gap-3">
-              <figure className="w-10 h-10 rounded-full overflow-hidden">
+            <div className="flex gap-5">
+              <figure className="w-[200px] h-[200px] rounded-full overflow-hidden">
                 <img
-                  className="w-full"
+                  className="w-[200px] rounded-full"
                   src={review?.user?.photo || avatar}
                   alt="avatar"
                 />
               </figure>
 
               <div>
-                <h5 className="text-[16px] leading-6 text-primaryColor font-bold">
+                <h5 className="text-[16px] leading-6 text-headingColor font-bold">
                   {review?.user?.name}
                 </h5>
                 <p className="text-[14px] leading-6 text-textColor">
@@ -40,7 +40,7 @@ const OwnerFeedBack = ({ reviews, totalRating }) => {
 
             <div className="flex gap-1">
               {[...Array(review?.rating).keys()].map((_, index) => (
-                <AiFillStar key={index} color="#0067FF" />
+                <AiFillStar key={index} color="#C70039" />
               ))}
             </div>
           </div>

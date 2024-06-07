@@ -51,7 +51,7 @@ const FeedBackForm = () => {
   };
 
   return (
-    <form action>
+    <form>
       <div>
         <h3 className="text-textColor text-[16px] leading-6 font-semibold mb-4 mt-0">
           How would you rate the overall experience?

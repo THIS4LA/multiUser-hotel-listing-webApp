@@ -3,14 +3,14 @@ import signupImg from "../assets/images/signUp.png";
 import avatar from "../assets/images/user.png";
 import uploadImageToCloudinary from "../utils/uploadCloudinary.js";
 import { BASE_URL } from "../config.js";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -18,11 +18,11 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
     photo: selectedFile,
-    role: "user",
+    role: "guest",
   });
   const [error, setError] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,41 +37,59 @@ const Signup = () => {
     setFormData({ ...formData, photo: data.url });
   };
 
-  const submitHandler = async event=>{
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 8 && /\d/.test(password);
+  };
+
+  const submitHandler = async (event) => {
     event.preventDefault();
-    setLoading(true)
+    setLoading(true);
+
+    if (!validateEmail(formData.email)) {
+      setError("Invalid email address");
+      setLoading(false);
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      setError("Password must be at least 8 characters long and contain at least one number");
+      setLoading(false);
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords doesn't match");
+      setError("Passwords do not match");
       setLoading(false);
       return;
     }
 
     try {
-     const res = await fetch (`${BASE_URL}/auth/register`,{
-      method: "post",
-      headers:{
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
-     })
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
 
-     const {message} = await res.json()
+      const { message } = await res.json();
 
-     if(!res.ok){
-      throw new Error(message)
-     }
+      if (!res.ok) {
+        throw new Error(message);
+      }
 
-     setLoading(false)
-     toast.success(message)
-     navigate('/login')
-
-
+      setLoading(false);
+      toast.success(message);
+      navigate('/login');
     } catch (err) {
-      toast.error(err.message)
-      setLoading(false)
+      toast.error(err.message);
+      setLoading(false);
     }
-
   };
 
   return (
@@ -167,7 +185,7 @@ const Signup = () => {
                     className="text-textColor font-semibold text-[17px] leading-7 px-4 
               py-3 focus:outline-none"
                   >
-                    <option value="user">Guest</option>
+                    <option value="guest">Guest</option>
                     <option value="owner">Partner</option>
                   </select>
                 </label>

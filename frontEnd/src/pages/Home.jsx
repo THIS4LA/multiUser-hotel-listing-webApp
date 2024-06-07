@@ -148,8 +148,7 @@ const Home = () => {
           </div>
         </section>
         <About />
-        {/* services */}
-        <section>
+        <section className='pt-[200px] lg:pt-[300px]'>
           <div className='container'>
             <div className='xl:w-[400px] mx-auto'>
               <h2 className='heading text-center'>
@@ -162,8 +161,6 @@ const Home = () => {
             <ServiceList/>
           </div>
         </section>
-        {/* services end */}
-        {/* top rated hotels */}
         <section>
           <div className='container'>
             <div className='xl:w-[470px] mx-auto'>
@@ -176,8 +173,6 @@ const Home = () => {
           </div>
           <OwnerList />
         </section>
-        {/* top rated hotels end */}
-        {/* faq section */}
         <section>
         <div className="container">
           <div className="flex justify-between gap-[50px] lg:gap-0">
@@ -192,9 +187,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-        {/* end faq section */}
-        {/* testimonial */}
-        {/* =======testimonial======= */}
       <section>
         <div className="container">
           <div className="xl:w-[470px] mx-auto">
@@ -206,8 +198,6 @@ const Home = () => {
           <Testimonial />
         </div>
       </section>
-      {/* =======testimonial end======= */}
-        {/* testimonial end */}
     </>
     </>
   )

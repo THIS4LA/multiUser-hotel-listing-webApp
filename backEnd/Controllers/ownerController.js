@@ -82,13 +82,14 @@ export const getAllOwners = async (req, res) => {
   }
 };
 
-export const getAllOwners2 = async (req, res) => {
+export const getPendingOwners = async (req, res) => {
   try {
     const { query } = req.query;
     let owners;
 
     if (query) {
       owners = await Owner.find({
+        isApproved: "pending",
         $or: [
           { name: { $regex: query, $options: "i" } },
           { category: { $regex: query, $options: "i" } },
@@ -96,12 +97,12 @@ export const getAllOwners2 = async (req, res) => {
         ],
       }).select("-password");
     } else {
-      owners = await Owner.find().select("-password");
+      owners = await Owner.find({ isApproved: "pending" }).select("-password");
     }
 
     res.status(200).json({
       success: true,
-      message: "Owners found",
+      message: "users found",
       data: owners,
     });
   } catch (err) {
@@ -125,13 +126,11 @@ export const getOwnerProfile = async (req, res) => {
     const { password, ...reset } = owner._doc;
     const checkings = await Checking.find({ owner: ownerId });
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Profile info is getting",
-        data: { ...reset, checkings },
-      });
+    res.status(200).json({
+      success: true,
+      message: "Profile info is getting",
+      data: { ...reset, checkings },
+    });
   } catch (err) {
     res
       .status(500)

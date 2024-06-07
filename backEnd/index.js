@@ -8,6 +8,7 @@ import userRoute from "./Routes/user.js";
 import ownerRoute from "./Routes/owner.js"
 import adminRoute from "./Routes/admin.js"
 import reviewRoute from "./Routes/review.js";
+import contactRoute from "./Routes/contact.js"
 
 dotenv.config();
 
@@ -44,6 +45,7 @@ app.use("/api/v1/users", userRoute);
 app.use("/api/v1/owners", ownerRoute);
 app.use("/api/v1/admins", adminRoute);
 app.use('/api/v1/reviews', reviewRoute);
+app.use('/api/v1/contacts', contactRoute);
 
 app.listen(port, () => {
     connectDB();

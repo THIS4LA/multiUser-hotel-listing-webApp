@@ -61,7 +61,7 @@ const Tabs = ({ tab, setTab }) => {
               : "bg-transparent text-headingColor"
           } w-full btn hover:bg-slate-200 hover:border-black border-2 hover:text-black mt-0 rounded-md`}
         >
-          Suggestions
+          Contacts
         </button>
         <div className="mt-[100px] w-full">
                 <button

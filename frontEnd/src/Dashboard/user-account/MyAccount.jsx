@@ -42,7 +42,7 @@ const MyAccount = () => {
           <div className="flex items-center justify-center">
             <figure className="w-[100px] h-[100px] rounded-full border-2 border-solid border-redColor">
               <img
-                src={userData.profileImage || userImg}
+                src={userData.photo || userImg}
                 alt="userImg"
                 className="w-full h-full rounded-full object-cover"
               />
