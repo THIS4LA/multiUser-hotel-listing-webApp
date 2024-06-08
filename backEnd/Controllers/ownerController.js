@@ -82,7 +82,7 @@ export const getAllOwners = async (req, res) => {
   }
 };
 
-export const getPendingOwners = async (req, res) => {
+export const getPending = async (req, res) => {
   try {
     const { query } = req.query;
     let owners;
@@ -96,8 +96,11 @@ export const getPendingOwners = async (req, res) => {
           { address: { $regex: query, $options: "i" } },
         ],
       }).select("-password");
+
+
     } else {
       owners = await Owner.find({ isApproved: "pending" }).select("-password");
+
     }
 
     res.status(200).json({
@@ -106,9 +109,12 @@ export const getPendingOwners = async (req, res) => {
       data: owners,
     });
   } catch (err) {
+    console.error("Error fetching owners:", err);
+
     res.status(404).json({ success: false, message: "Not found" });
   }
 };
+
 
 
 export const getOwnerProfile = async (req, res) => {

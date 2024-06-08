@@ -30,7 +30,7 @@ const Owners = () => {
     data: owners,
     loading: dataLoading,
     error,
-  } = useFetchData(`${BASE_URL}/owners?query=${debounceQuery}`);
+  } = useFetchData(`${BASE_URL}/owners/pending/owners?query=${debounceQuery}`);
 
   const updateOwner = async (ownerId, updatedStatus) => {
     setLoading(true);

@@ -38,7 +38,7 @@ const Testimonial = () => {
         }}
       >
         <SwiperSlide>
-          <div className="py-3 px-3 lg:px-5 rounded-3xl">
+          <div className="py-3 px-3 lg:px-5 rounded-3xl shadow-2xl">
             <div className="flex items-center gap-3 lg:gap-5">
               <img src={user01} alt="patientAvatar" className="w-12 h-12 lg:w-16 lg:h-16 rounded-full" />
               <div>
@@ -60,7 +60,7 @@ const Testimonial = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="py-3 px-3 lg:px-5 rounded-3xl">
+          <div className="py-3 px-3 lg:px-5 rounded-3xl shadow-2xl">
             <div className="flex items-center gap-3 lg:gap-5">
               <img src={user02} alt="patientAvatar" className="w-12 h-12 lg:w-16 lg:h-16 rounded-full" />
               <div>
@@ -82,7 +82,7 @@ const Testimonial = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="py-3 px-3 lg:px-5 rounded-3xl">
+          <div className="py-3 px-3 lg:px-5 rounded-3xl shadow-2xl">
             <div className="flex items-center gap-3 lg:gap-5">
               <img src={user03} alt="patientAvatar" className="w-12 h-12 lg:w-16 lg:h-16 rounded-full" />
               <div>
@@ -104,7 +104,7 @@ const Testimonial = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="py-3 px-3 lg:px-5 rounded-3xl">
+          <div className="py-3 px-3 lg:px-5 rounded-3xl shadow-2xl ">
             <div className="flex items-center gap-3 lg:gap-5">
               <img src={user04} alt="patientAvatar" className="w-12 h-12 lg:w-16 lg:h-16 rounded-full" />
               <div>
@@ -126,7 +126,7 @@ const Testimonial = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="py-3 px-3 lg:px-5 rounded-3xl">
+          <div className="py-3 px-3 lg:px-5 rounded-3xl shadow-2xl">
             <div className="flex items-center gap-3 lg:gap-5">
               <img src={user05} alt="patientAvatar" className="w-12 h-12 lg:w-16 lg:h-16 rounded-full" />
               <div>
