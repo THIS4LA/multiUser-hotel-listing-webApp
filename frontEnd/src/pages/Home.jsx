@@ -19,6 +19,7 @@ import FaqList from '../components/Faq/FaqList.jsx';
 import Testimonial from '../components/Testimonial/Testimonial.jsx';
 
 const Home = () => {
+  
   return (
     <>
     <>
@@ -29,7 +30,7 @@ const Home = () => {
           {/* ======hero content==== */}
           <div>
             <div className='lg:w-[570px]'>
-              <h1 className='styledFont letterSpace text-[46px] pt-[150px] leading-[46px] text-redColor font-[800] md:text-[60px] md:leading-[70px] center'>
+              <h1 className='styledFont letterSpace text-[46px] pt-[150px] leading-[46px] text-redColor font-[800] md:text-[60px] md:leading-[70px] center stroke-3 stroke-black'>
               Discover a World <br></br> of
               <ReactTyped
                 className="pl-6 letterSpace md:text-[60px] sm:text-6xl text-[36px] font-bold md:py-6 text-blueColor"
