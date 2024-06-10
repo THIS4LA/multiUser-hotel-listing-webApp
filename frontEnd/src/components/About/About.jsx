@@ -5,7 +5,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import aboutImg from '../../assets/images/about-us.png'
 const About = () => {
   return (
-    <section id='about'>
+    <section id='about' data-aos="fade-up">
       <div className='container'>
         <div className='flex justify-between gap-[50px] lg:gap-[130px] xl:gap-0 flex-col lg:flex-row'>
         {/* =======About image======== */}

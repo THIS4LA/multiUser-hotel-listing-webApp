@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import BgPhoto from "../assets/images/bg-photo.jpg"
 import icon01 from "../assets/images/urban-hotel-primary.png";
 import icon02 from "../assets/images/beach-blue.png";
@@ -10,7 +10,9 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import { FaAngleRight } from 'react-icons/fa';
 import { ReactTyped } from "react-typed";
 import { NavLink, Link } from "react-router-dom";
-import ScrollDownArrow from "../components/ScrollDownArrow/ScrollDownArrow"
+import ScrollDownArrow from "../components/ScrollDownArrow/ScrollDownArrow";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import About from "../components/About/About.jsx";
 import ServiceList from '../components/Services/ServiceList.jsx';
@@ -19,11 +21,17 @@ import FaqList from '../components/Faq/FaqList.jsx';
 import Testimonial from '../components/Testimonial/Testimonial.jsx';
 
 const Home = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+    });
+  }, []);
   
   return (
     <>
     <>
-    <section className='hero__section pt-[60px] 2xl:h-[800px] md:mb-[400px] mb-[500px] lg:mb-[120px]'>
+    <section className='App hero__section pt-[60px] 2xl:h-[800px] md:mb-[400px] mb-[500px] lg:mb-[120px]'>
       <img src={BgPhoto} className='bg-photo' />
       <div className='container'>
         <div className='flex flex-col lg:flex-row gap-[90px] items-center justify-center'>
@@ -52,14 +60,14 @@ const Home = () => {
     <section>
           <div className="container lg:pt-[120px]">
             <div className="lg:w-[470px] mx-auto">
-              <h2 className="heading text-center" id='category'>
+              <h2 data-aos="fade-up" className="heading text-center" id='category'>
                 Exploring Diverse Hotel<span className='pl-2 pr-2 text-redColor'>Categories</span> 
               </h2>
-              <p className="text__para text-center">
+              <p className="text__para text-center" data-aos="fade-up">
               Explore urban hotels, beachside retreats, resorts, and hotels with top-rated restaurants, each offering unique experiences for every traveler.</p>
             </div>
             {/* ===========Links============*/}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg-gap-[30px] mt-[30px] lg:mt-[55px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg-gap-[30px] mt-[30px] lg:mt-[55px]" data-aos="fade-up">
 
               {/* =========first========= */}
               <div className="py-[30px] px-5">
@@ -149,7 +157,7 @@ const Home = () => {
           </div>
         </section>
         <About />
-        <section className='pt-[200px] lg:pt-[300px]'>
+        <section  data-aos="fade-up" className='pt-[200px] lg:pt-[300px]'>
           <div className='container'>
             <div className='xl:w-[400px] mx-auto'>
               <h2 className='heading text-center'>
@@ -162,7 +170,7 @@ const Home = () => {
             <ServiceList/>
           </div>
         </section>
-        <section>
+        <section data-aos="fade-up">
           <div className='container'>
             <div className='xl:w-[470px] mx-auto'>
               <h2 className='heading text-center'><span className='text-redColor'>Top-Rated</span> Hotels for Unforgettable Stays</h2>
@@ -174,7 +182,7 @@ const Home = () => {
           </div>
           <OwnerList />
         </section>
-        <section>
+        <section data-aos="fade-up">
         <div className="container">
           <div className="flex justify-between gap-[50px] lg:gap-0">
             <div className="mt-12 w-1/2 hidden md:block">
@@ -188,7 +196,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section data-aos="fade-up">
         <div className="container">
           <div className="xl:w-[470px] mx-auto">
             <h2 className="heading text-center">Hear What our <span className='text-pinkColor'>Visitors Have to Say</span></h2>
