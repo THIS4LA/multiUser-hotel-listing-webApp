@@ -8,6 +8,7 @@ import Services from "../pages/Services";
 import MyAccount from "../Dashboard/user-account/MyAccount";
 import Dashboard from "../Dashboard/owner-account/Dashboard";
 import AdminDashboard from "../Dashboard/admin-account/AdminDashboard";
+import AppointmentForm from "../pages/Owners/AppointmentForm";
 
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
@@ -23,6 +24,7 @@ const Routers = () => {
       <Route path="/register" element={<SignUp />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/services" element={<Services />} />
+      <Route path="/appointment" element={<AppointmentForm />} />
       <Route path="/users/profile/me" element={<ProtectedRoute allowedRoles={['guest']}><MyAccount /></ProtectedRoute>} />
       <Route path="/owners/profile/me" element={<ProtectedRoute allowedRoles={['owner']}><Dashboard /></ProtectedRoute>} />
       <Route path="/admins/profile/me" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />

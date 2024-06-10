@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SidePanel = ({name}) => {
   return (
@@ -14,7 +15,7 @@ const SidePanel = ({name}) => {
         </p>
       </div>
 
-      <button className="btn bg-redColor px-2 w-full rounded-md">Check</button>
+      <Link to="/appointment" ><button className="btn bg-redColor px-2 w-full rounded-md">Check</button></Link>
     </div>
   );
 };

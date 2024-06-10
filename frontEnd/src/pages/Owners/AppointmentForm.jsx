@@ -47,7 +47,7 @@ const AppointmentForm = () => {
   };
 
   return (
-    <div>
+    <div className="container pb-10">
       <h2 className="text-headingColor font-bold text-[24px] leading-9 mb-10">
         Availability Checking Form
       </h2>
