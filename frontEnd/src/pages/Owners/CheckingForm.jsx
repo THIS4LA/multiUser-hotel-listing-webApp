@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { BASE_URL, token } from "../../config";
 import { useParams } from "react-router-dom";
 
-const AppointmentForm = () => {
+const CheckingForm = () => {
   const [formData, setFormData] = useState({
     checkingDate: "",
     checkingTime: "",
@@ -26,7 +26,7 @@ const AppointmentForm = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${BASE_URL}/owners/${id}/appointments`, {
+      const res = await fetch(`${BASE_URL}/owners/checkings/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -178,4 +178,4 @@ const AppointmentForm = () => {
   );
 };
 
-export default AppointmentForm;
+export default CheckingForm;
