@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BASE_URL } from "../../config";
 import { useParams } from "react-router-dom";
 
 const SidePanel = ({ name }) => {

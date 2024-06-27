@@ -24,7 +24,7 @@ const Routers = () => {
       <Route path="/register" element={<SignUp />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/services" element={<Services />} />
-      <Route path="/owners/checkings/:id" element={<CheckingForm />} />
+      <Route path="/owners/checkings/:id" element={<ProtectedRoute allowedRoles={['guest']}><CheckingForm /></ProtectedRoute>} />
       <Route path="/users/profile/me" element={<ProtectedRoute allowedRoles={['guest']}><MyAccount /></ProtectedRoute>} />
       <Route path="/owners/profile/me" element={<ProtectedRoute allowedRoles={['owner']}><Dashboard /></ProtectedRoute>} />
       <Route path="/admins/profile/me" element={<ProtectedRoute allowedRoles={['admin']}><AdminDashboard /></ProtectedRoute>} />
