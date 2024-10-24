@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Ignore package-lock.json, node_modules, and .env in the root folder
+package-lock.json
+node_modules/
+.env
+
+# Ignore package-lock.json, node_modules, and .env in the backend folder
+backEnd/package-lock.json
+backEnd/node_modules/
+backEnd/.env
+
+# Ignore package-lock.json, node_modules, and .env in the frontend folder
+frontEnd/package-lock.json
+frontEnd/node_modules/
+frontEnd/.env
+
+# Ignore build directories
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
