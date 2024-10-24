@@ -8,7 +8,7 @@ import {
     getAllUsers,
     deleteUser,
     getAdminProfile
-} from "../controllers/adminController.js";
+} from "../Controllers/adminController.js";
 import { authenticate, restrict } from "../auth/verifyToken.js";
 
 const router = express.Router();
