@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Ignore package-lock.json, node_modules, and .env in the root folder
+# Ignore package-lock.json, node_modules, and .env in the root
 package-lock.json
 node_modules/
 .env
@@ -16,11 +16,6 @@ node_modules/
 backEnd/package-lock.json
 backEnd/node_modules/
 backEnd/.env
-
-# Ignore package-lock.json, node_modules, and .env in the frontend folder
-frontEnd/package-lock.json
-frontEnd/node_modules/
-frontEnd/.env
 
 # Ignore build directories
 dist
